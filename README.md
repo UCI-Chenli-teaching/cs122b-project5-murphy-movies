@@ -1,4 +1,4 @@
-## CS 122B Project 5 show-murphy example
+## CS 122B Project 5 Murphy movies example
 
 1. This example application allows you to log in and see a movie by Eddie Murphy.
 2. In branch `Dockerized`, you will see how this application is turned into a docker image and deployed to AWS using Docker
