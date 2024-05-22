@@ -9,26 +9,48 @@
  *      3. Populate the data to correct html elements.
  */
 
+let commentForm = $("#comment-form")
 
-/**
- * Retrieve parameter from request URL, matching by parameter name
- * @param target String
- * @returns {*}
- */
-function getParameterByName(target) {
-    // Get request URL
-    let url = window.location.href;
-    // Encode target parameter name to url encoding
-    target = target.replace(/[\[\]]/g, "\\$&");
+function handleCommentsArray(resultArray) {
+    console.log(resultArray);
+    let comment_list = $("#comment_list");
+    // change it to html list
+    let res = "<ul>";
+    for (let i = 0; i < resultArray.length; i++) {
+        // each comment will be in a bullet point
+        res += "<li>" + resultArray[i] + "</li>";
+    }
+    res += "</ul>";
 
-    // Ues regular expression to find matched parameter value
-    let regex = new RegExp("[?&]" + target + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
+    // clear the old array and show the new array in the frontend
+    comment_list.html("");
+    comment_list.append(res);
+}
 
-    // Return the decoded parameter value
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+function refreshComments() {
+    jQuery.ajax({
+        dataType: "json",
+        method: "GET",// Setting request method
+        url: "api/comments",
+        success: (resultData) => handleCommentsArray(resultData),
+    });
+}
+
+function insertComment(submitEvent) {
+    console.log("submit comment");
+
+    submitEvent.preventDefault()
+
+    $.ajax("api/comments", {
+        method: "POST",
+        data: commentForm.serialize(),
+        success: (insertResponse) => {
+            console.log(insertResponse)
+            refreshComments()
+        },
+        error: (err) => console.log(err)
+    });
+    commentForm[0].reset()
 }
 
 /**
@@ -36,7 +58,7 @@ function getParameterByName(target) {
  * @param resultData jsonObject
  */
 
-function handleResult(resultData) {
+function handleStarInfo(resultData) {
 
     console.log("handleResult: populating star info from resultData");
 
@@ -79,6 +101,12 @@ let starId = 755017  // hardcoded Edie Murphy's star ID
 jQuery.ajax({
     dataType: "json",  // Setting return data type
     method: "GET",// Setting request method
-    url: "api/single-star?id=" + starId, // Setting request url, which is mapped by StarsServlet in Stars.java
-    success: (resultData) => handleResult(resultData) // Setting callback function to handle data returned successfully by the SingleStarServlet
+    url: "api/single-star?id=" + starId,
+    success: (resultData) => handleStarInfo(resultData)
 });
+
+// load all the comments
+refreshComments();
+
+// bind form submit to a function
+commentForm.submit(insertComment);

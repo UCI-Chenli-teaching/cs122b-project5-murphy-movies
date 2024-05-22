@@ -16,8 +16,8 @@
 
 - create a test user and grant privileges:
    ```
-   mysql> CREATE USER 'mytestuser'@'localhost' IDENTIFIED BY 'My6$Password';
-   mysql> GRANT ALL PRIVILEGES ON * . * TO 'mytestuser'@'localhost';
+   mysql> CREATE USER 'mytestuser'@'%' IDENTIFIED BY 'My6$Password';
+   mysql> GRANT ALL PRIVILEGES ON * . * TO 'mytestuser'@'%';
    mysql> quit;
    ```
 
@@ -26,15 +26,14 @@
 
 ```
 local> mysql -u mytestuser -p
-mysql> CREATE DATABASE IF NOT EXISTS moviedbexample;
-mysql> USE moviedbexample;
+mysql> CREATE DATABASE IF NOT EXISTS murphymovies;
+mysql> USE murphymovies;
 mysql> CREATE TABLE IF NOT EXISTS stars(
                id varchar(10) primary key,
                name varchar(100) not null,
                birthYear integer
            );
 
-mysql> INSERT IGNORE INTO stars VALUES('755011', 'Arnold Schwarzeneggar', 1947);
 mysql> INSERT IGNORE INTO stars VALUES('755017', 'Eddie Murphy', 1961);
 
 mysql> CREATE TABLE if not exists movies(
@@ -45,7 +44,6 @@ mysql> CREATE TABLE if not exists movies(
        	    PRIMARY KEY (id)
        );
 
-mysql> INSERT IGNORE INTO movies VALUES('1111', 'The Terminator', 1984, 'James Cameron');
 mysql> INSERT IGNORE INTO movies VALUES('2222', 'Coming To America', 1988, 'John Landis');
 
 mysql> CREATE TABLE IF NOT EXISTS stars_in_movies(
@@ -56,7 +54,13 @@ mysql> CREATE TABLE IF NOT EXISTS stars_in_movies(
        );
 
 mysql> INSERT IGNORE INTO stars_in_movies VALUES('755017', '2222');
-mysql> INSERT IGNORE INTO stars_in_movies VALUES('755011', '1111');
+
+mysql> CREATE TABLE IF NOT EXISTS comments(
+            comment TEXT NOT NULL
+       );
+
+mysql> INSERT INTO comments VALUE('Good');
+
 mysql> quit;
 ```
 
