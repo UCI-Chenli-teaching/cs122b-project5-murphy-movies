@@ -21,7 +21,7 @@
    mysql> quit;
    ```
 
-#### prepare the database `moviedbexample`
+#### prepare the database `murphymovies`
 
 
 ```
