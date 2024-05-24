@@ -14,20 +14,20 @@
    mysql -u root -p
    ```
 
-- create the test user and grant privileges:
-- Note that @'%' allows 'mytestuser' to login from anywhere instead of only @'localhost'
+- create a murphy user and grant privileges:
+- Note that @'%' allows 'murphyuser' to login from anywhere instead of only @'localhost'
 - This is critical for Docker and Kubernetes
    ```
-   CREATE USER 'mytestuser'@'%' IDENTIFIED BY 'My6$Password';
-   GRANT ALL PRIVILEGES ON * . * TO 'mytestuser'@'%';
+   CREATE USER 'murphyuser'@'%' IDENTIFIED BY 'My7$Password';
+   GRANT ALL PRIVILEGES ON * . * TO 'murphyuser'@'%';
    ```
 
 #### prepare the database `murphymovies`
 
-- login to mysql as mytestuser
+- login to mysql as murphy user
   
   ```
-  mysql -u mytestuser -p
+  mysql -u murphyuser -p
   ```
 - initialize the database
 
