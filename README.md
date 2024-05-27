@@ -26,13 +26,14 @@
 
 ### Before running the example
 - follow the instructions from the main branch README to set up the `murphymovies` database on an AWS machine
+- On the AWS machine, edit the `/etc/mysql/mysql.conf.d/mysqld.cnf` file and set the bind-address to 0.0.0.0  Restart by `sudo service mysql restart`.
 - download docker (the latest version) on your local and aws machines
   - install on AWS (Ubuntu): follow https://docs.docker.com/engine/install/ubuntu/
 - register a DockerHub account, log in to your account from the command line with `docker login` on both local and aws
 
 ### Build the Docker Image on local machine
 Run `docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v1 ` in the root folder:
-- `-t` means giving this image a tag, 
+- `-t` means giving this image a tag 
 - replace `<DockerHub-user-name>` with the username you just registered
 - `cs122b-p5-murphy` is the DockerHub repo name, you may change it to whatever, be consistent in below steps if you do.
 - `v1` is the tag name. The naming convention is `v1` ..`v2` for incremental version number.
@@ -56,3 +57,4 @@ Run `sudo docker run --add-host host.docker.internal:host-gateway -p 8080:8080 <
 - `docker rm <container ID>` to delete container
 - `docker images` list all images
 - `docker rmi <image ID>` to delete image
+- add `sudo` if running the commands on an AWS machine or checkout [manager Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
