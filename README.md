@@ -23,47 +23,30 @@
 
 ## Running this example
 
-We will build a docker image on our local machine, push it to Docker Hub, pull it into an AWS machine, and run a Docker container on the AWS instance to serve the website.
+We will build a docker image on an AWS instance, push it to Docker Hub, and run a Docker container on the AWS instance to serve the website.
 
 ### Setup an AWS instance
 - Follow the instructions from the README file in the `main` branch to set up the `murphymovies` database on an AWS instance;
 - On the AWS instance, edit the `/etc/mysql/mysql.conf.d/mysqld.cnf` file and set `bind-address` to `0.0.0.0`.
 - Restart MySQL by running `sudo service mysql restart`.
-- Install Docker on the AWS instance by following the instructions on https://docs.docker.com/engine/install/ubuntu/. Use the instructions under "Install using the apt repository
-  ".
+- Install Docker on the AWS instance by following the instructions on https://docs.docker.com/engine/install/ubuntu/. Use the instructions under "Install using the apt repository".
 - Register a Docker Hub account.
-- Log into our Docker Hub account by running `docker login` on the AWS instance;
+- Log into our Docker Hub account by running `sudo docker login` on the AWS instance;
 
-### Install Docker on the local machine
-
-Go to the page https://docs.docker.com/engine/install/. Follow the instructions to install the corresponding Docker engine for your OS.
-
-Run `docker login` to log into our Docker Hub account.
-
-### Build a Docker image on the local machine
-On our local machine, go to the root folder of this application. Run `docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v1 `
+### Build a Docker image on the AWS instance
+`git clone` this repository on the AWS instance, run `git checkout Dockerized` to switch to the `Dockerized` branch
+Go to the root folder of this application. Run `docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v1 `
 - `-t` means giving this image a tag 
 - replace `<DockerHub-user-name>` with the username you just registered
 - `cs122b-p5-murphy` is the DockerHub repo name, you may change it to whatever, be consistent in below steps if you do.
 - `v1` is the tag name. The naming convention is `v1` ..`v2` for incremental version number.
 - `--platform linux/amd64` ensures that the image built will be compatible with the CPU architecture of the AWS machines 
 
-Check the created image by running `docker images`. Note the tag and ID of the image `cs122b-p5-murphy`.
-
-If we see a permission error, run `sudo docker ...` instead of `docker ...`.
+Check the created image by running `sudo docker images`. Note the tag and ID of the image `cs122b-p5-murphy`.
 
 ### Push the image to Docker Hub
-- Push the image to Docker Hub by running the following command: `docker push <DockerHub-user-name>/cs122b-p5-murphy:v1`
+- Push the image to Docker Hub by running the following command: `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy:v1`
 - Log in our Docker Hub web page. We should be able to see the newly pushed image.
-
- 
-
-### Pull the image from Docker Hub to the AWS instance
-
-On the AWS instance:
-
-- Pull the image from Docker Hub by running `sudo docker pull <DockerHub-user-name>/cs122b-p5-murphy:v1`
-- Run `sudo docker images` to verify that the image is available on the instance
 
 ### Use the image to start a Docker container on the AWS instance
 
