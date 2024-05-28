@@ -8,28 +8,34 @@
 
 ## Brief Explanation
 
-- The Deckerized branch extends the main branch to enable this example application to run in Docker containers.
-- There are two changes compared to the main, a new Dockerfile in the root folder and a modified context.xml
+- The `Deckerized` branch extends the `main` branch to enable this application to run in Docker containers.
+- There are two main changes compared to the `main` branch: a new `Dockerfile` in the root folder and a modified `context.xml`.
 
 ### Dockerfile
-- This file provides instructions to the docker engine on how to package the whole application into a docker image
-- The docker image will be used to "boot up" docker containers, which can be thought of as lightweight "virtual machines" that are dedicated to run your application only
+- This file provides instructions to the Docker engine on how to package the application into a docker image;
+- The docker image will be used to "boot up" docker containers, which can run the application.
 
 ### context.xml
-- Since the tomcat server will be running inside Docker containers, from its perspective, the url of the MySQL server changes.
-- They used to be running on the same machine (same network) so the MySQL server used to be found at `localhost:3306`
-- Now MySQL server will be found at `host.docker.internal:3306`
+- Since the Tomcat server will run inside Docker containers, the url of the MySQL server changes.
+- They used to be running on the same machine (using `localhost`);
+- Now the MySQL server can be found using `host.docker.internal:3306`
 
 
 ## Running this example
-- We will build a docker image on your local machine, push it to DockerHub, pull it from a AWS machine, and run a Docker container on AWS to serve the website.
 
-### Before running the example
-- follow the instructions from the main branch README to set up the `murphymovies` database on an AWS machine
-- On the AWS machine, edit the `/etc/mysql/mysql.conf.d/mysqld.cnf` file and set the bind-address to 0.0.0.0  Restart by `sudo service mysql restart`.
-- download docker (the latest version) on your local and aws machines
-  - install on AWS (Ubuntu): follow https://docs.docker.com/engine/install/ubuntu/
-- register a DockerHub account, log in to your account from the command line with `docker login` on both local and aws
+We will build a docker image on our local machine, push it to Docker Hub, pull it into an AWS machine, and run a Docker container on the AWS instance to serve the website.
+
+### Setup an AWS instance
+- Follow the instructions from the README file in the `main` branch to set up the `murphymovies` database on an AWS instance;
+- On the AWS instance, edit the `/etc/mysql/mysql.conf.d/mysqld.cnf` file and set `bind-address` to `0.0.0.0`.
+- Restart MySQL by running `sudo service mysql restart`.
+- Install Docker on the AWS instance by following the instructions on https://docs.docker.com/engine/install/ubuntu/
+- Register a Docker Hub account.
+- Log in to our Docker Hub account by running `docker login` on the AWS instance;
+
+<!---
+ Download the latest Docker  on both your local machine and the AWS instance;
+-->
 
 ### Build the Docker Image on local machine
 Run `docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v1 ` in the root folder:
