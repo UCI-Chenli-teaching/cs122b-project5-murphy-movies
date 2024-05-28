@@ -9,27 +9,26 @@
 
 #### We need to create a user that is allowed to login from anywhere
 
-- login to mysql as a root user
+- Login to MySQL as a `root` user
    ```
    mysql -u root -p
    ```
 
-- create a murphy user and grant privileges:
-- Note that @'%' allows 'murphyuser' to login from anywhere instead of only @'localhost'
-- This is critical for Docker and Kubernetes
+- Create an account called `murphyuser` and grant privileges. Note that `@'%'` allows the user to login from anywhere instead of only `@'localhost'`. This command is critical for Docker and Kubernetes:
    ```
    CREATE USER 'murphyuser'@'%' IDENTIFIED BY 'My7$Password';
    GRANT ALL PRIVILEGES ON * . * TO 'murphyuser'@'%';
+   exit;
    ```
 
-#### prepare the database `murphymovies`
+#### Prepare the database `murphymovies`
 
-- login to mysql as murphy user
+- Login to MySQL as `murphyuser`:
   
   ```
   mysql -u murphyuser -p
   ```
-- initialize the database
+- Initialize the database
 
 ```
 CREATE DATABASE IF NOT EXISTS murphymovies;
@@ -69,19 +68,19 @@ INSERT INTO comments VALUE('Good');
 
 ```
 
-### Brief Explanation
+### Explanation of the Tomcat application
 
-- The default username is `anteater` and password is `123456` .
+- The default login username for the application is `anteater`, and the password is `123456`.
 
-- Once logged in, you will see Eddie Murphy's info and can leave comments.
+- After logging in, you will see Eddie Murphy's info and can leave comments.
 
-- All comments are persisted to MySQL.
+- All comments are saved to MySQL.
 
 
-### DataSource
+### Data Sources
 
-- `WebContent/META-INF/context.xml` contains two DataSources, with database information stored in them. For this branch, they point to the same local MySQL server.
-  `WEB-INF/web.xml` registers the DataSources to names `jdbc/MySQLReadWrite` and `jdbc/MySQLReadOnly`, which could be referred to anywhere in the project.
+- The file `WebContent/META-INF/context.xml` contains two data sources. In the `master` branch, the two data sources  use the same local MySQL server.
+- The file `WEB-INF/web.xml` registers the data sources using the names `jdbc/MySQLReadWrite` and `jdbc/MySQLReadOnly`.
 
-- `SingleStarServlet.java`  use the `jdbc/MySQLReadOnly` dataSource to get Eddie Murphy's info.
-- `CommentServelt.java` use the `jdbc/MySQLReadWrite` dataSource to insert and retrieve comments.
+- The file `SingleStarServlet.java` uses the `jdbc/MySQLReadOnly` data source to get Eddie Murphy's info.
+- The file `CommentServelt.java` uses the `jdbc/MySQLReadWrite` data source to insert and retrieve comments.
