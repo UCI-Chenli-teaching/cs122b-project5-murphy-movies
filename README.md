@@ -20,12 +20,12 @@ In a Kubernetes cluster, the MySQL Master/Slave pods will be set up by `helm`. T
 
 ## Running this example
 
-- Run `docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v2` to build the image.
+- Run `sudo docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v2` to build the image.
   - Note that this image is tagged `v2` to differentiate from the image we built in the `Dockerized` branch
-- push the image to DockerHub with `docker push <DockerHub-user-name>/cs122b-p5-murphy:v2`
+- push the image to DockerHub with `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy:v2`
 
 Once the image is pushed to DockerHub, your can refer to the Kubernetes Instruction repo to see how this image is used in the `.yaml` file to "boot up" the pods.
 
 ### Clean up
-- `docker images` list all images
-- `docker rmi <image ID>` to delete image
+- `sudo docker images` list all images
+- `sudo docker rmi <image ID>` to delete image
