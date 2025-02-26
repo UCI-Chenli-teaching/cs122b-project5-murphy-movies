@@ -52,7 +52,7 @@ Check the created image by running `sudo docker images`. Note the tag and ID of 
 
 In the security group of the AWS instance, open the "8080" port to our local machine.
 
-On the AWS instance, use the image to start a container by running `sudo docker run --add-host host.docker.internal:host-gateway -p 8080:8080 <image ID>` to start a docker container to run your application.  In the command, `-p 8080:8080` means we bind the port 8080 (first parameter) of the host instance to the port 8080 (second parameter) of the container.  When the host machine (the AWS instance) receives a request to the port 8080, the request will be relayed to the container's port 8080.
+On the AWS instance, use the image to start a container by running `sudo docker run --add-host host.docker.internal:host-gateway -p 8080:8080 <DockerHub-user-name>/cs122b-p5-murphy:v1` to start a docker container to run your application.  In the command, `-p 8080:8080` means we bind the port 8080 (first parameter) of the host instance to the port 8080 (second parameter) of the container.  When the host machine (the AWS instance) receives a request to the port 8080, the request will be relayed to the container's port 8080.
 
 Use our browser to access the website via `<AWS_PUBLIC_IP>:8080/cs122b-project5-murphy-movies/login.html`.
 
