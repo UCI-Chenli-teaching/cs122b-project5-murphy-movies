@@ -39,7 +39,7 @@ public class CommentsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        System.out.println("CommentServlet: Getting list of comments");
         response.setContentType("application/json"); // Response mime type
 
         PrintWriter out = response.getWriter();
@@ -87,7 +87,7 @@ public class CommentsServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String commentString = request.getParameter("comment_string");
-        System.out.println(commentString);
+        System.out.println("CommentServlet: new comment: " + commentString);
 
         try (Connection conn = dataSource.getConnection()) {
 

@@ -18,6 +18,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        System.out.println("LoginServlet: login request for user " + username);
+
         /* This example only allows username/password to be anteater/123456
         /  in the real project, you should talk to the database to verify username/password
         */

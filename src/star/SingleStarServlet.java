@@ -46,6 +46,7 @@ public class SingleStarServlet extends HttpServlet {
 
         // The log message can be found in localhost log
         request.getServletContext().log("getting id: " + id);
+        System.out.println("SingleStarServlet: get star id " + id);
 
         // Output stream to STDOUT
         PrintWriter out = response.getWriter();
