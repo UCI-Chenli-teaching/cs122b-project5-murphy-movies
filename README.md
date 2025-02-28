@@ -1,15 +1,15 @@
 # CS 122B Project 5 Murphy movies example
 
 1. This example application allows you to log in, see a movie by Eddie Murphy and leave comments.
-2. In branch `Dockerized`, you will see how this application is turned into a docker image and deployed to AWS using Docker
-3. In branch `Kubernetes-Compatible`, you will see how this application is modified to be deployed using Kubernetes pods
-4. In branch `Microservices`, you will see how this application is modified to a microservice architecture.
+2. In branch `Docker`, you will see how this application is turned into a docker image and deployed to AWS using Docker
+3. In branch `Kubernetes`, you will see how this application is modified to be deployed using Kubernetes pods
+4. In branch `Multi-Service`, you will see how this application is modified to a multi-service architecture.
 
-## This README.md file is used for the Microservices branch
+## This README.md file is used for the Multi-Service branch
 
 ## Brief Explanation
 
-- The Microservices branch uses Json Web Token(JWT) instead of session to store the user information. 
+- The Multi-Service branch uses Json Web Token(JWT) instead of session to store the user information. 
 - We modified the `pom.xml` to compile different part of the projects into different war files.
 
 ### Json Web Token(JWT)
