@@ -94,7 +94,7 @@
             <id>star</id>
             <properties>
                 <endpointDir>src/star</endpointDir>
-                <excludes/>
+                <excludes>**/login.html, **/login.js</excludes>
             </properties>
         </profile>
         <profile>

@@ -41,8 +41,8 @@ If you see errors in Intellij, open the Maven panel at the right. Expand "Profil
 
 ## Build different Docker images
 
-- Run `sudo docker build . --build-arg MVN_PROFILE=login --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-login:v2` to build the image for login endpoint.
+- Run `sudo docker build . --build-arg MVN_PROFILE=login --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-login:v1` to build the image for login endpoint.
   - We specify the Maven profile name with `--build-arg MVN_PROFILE=${profileName}`
-- Push the image to DockerHub with `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-login:v2`
-- Repeat the steps for star endpoint: `sudo docker build . --build-arg MVN_PROFILE=star --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-star:v2`
-- `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-star:v2`
+- Push the image to DockerHub with `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-login:v1`
+- Repeat the steps for star endpoint: `sudo docker build . --build-arg MVN_PROFILE=star --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-star:v1`
+- `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-star:v1`
