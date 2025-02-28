@@ -1,14 +1,15 @@
 # CS 122B Project 5 Murphy movies example
 
 1. This example application allows you to log in, see a movie by Eddie Murphy and leave comments.
-2. In branch `Dockerized`, you will see how this application is turned into a docker image and deployed to AWS using Docker
-3. In branch `Kubernetes-Compatible`, you will see how this application is modified to be deployed using Kubernetes pods
+2. In branch `Docker`, you will see how this application is turned into a docker image and deployed to AWS using Docker
+3. In branch `Kubernetes`, you will see how this application is modified to be deployed using Kubernetes pods
+4. In branch `Multi-Service`, you will see how this application is modified to a multi-service architecture.
 
-## This README.md file is used for the Dockerized branch
+## This README.md file is used for the Docker branch
 
 ## Brief Explanation
 
-- The `Deckerized` branch extends the `main` branch to enable this application to run in Docker containers.
+- The `Docker` branch extends the `main` branch to enable this application to run in Docker containers.
 - There are two main changes compared to the `main` branch: a new `Dockerfile` in the root folder and a modified `context.xml`.
 
 ### Dockerfile
@@ -34,7 +35,7 @@ We will build a docker image on an AWS instance, push it to Docker Hub, and run 
 - Log into our Docker Hub account by running `sudo docker login` on the AWS instance;
 
 ### Build a Docker image on the AWS instance
-`git clone` this repository on the AWS instance, run `git checkout Dockerized` to switch to the `Dockerized` branch
+`git clone` this repository on the AWS instance, run `git checkout Docker` to switch to the `Docker` branch
 Go to the root folder of this application. Run `sudo docker build . --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy:v1 `
 - `-t` means giving this image a tag 
 - replace `<DockerHub-user-name>` with the username you just registered
