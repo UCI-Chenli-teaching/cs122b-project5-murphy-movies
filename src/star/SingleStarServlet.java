@@ -5,6 +5,9 @@ import com.google.gson.JsonObject;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import common.JwtUtil;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -46,7 +49,24 @@ public class SingleStarServlet extends HttpServlet {
 
         // The log message can be found in localhost log
         request.getServletContext().log("getting id: " + id);
-        System.out.println("SingleStarServlet: get star id " + id);
+
+        // We can get the claims from request (attached in loginFilter)
+        Claims claims = (Claims) request.getAttribute("claims");
+        Integer accessCount = claims.get("accessCount", Integer.class);
+
+        if (accessCount == null) {
+            // Which means the user is never seen before
+            accessCount = 0;
+        } else {
+            accessCount++;
+        }
+
+        System.out.println("SingleStarServlet: user " + claims.getSubject() + " accessCount: " + accessCount);
+
+        // Update the accessCount, generate new JWT token and add to cookies
+        claims.put("accessCount", accessCount);
+        String token = JwtUtil.generateToken(claims.getSubject(), claims);
+        JwtUtil.updateJwtCookie(request, response, token);
 
         // Output stream to STDOUT
         PrintWriter out = response.getWriter();

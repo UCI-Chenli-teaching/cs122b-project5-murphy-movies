@@ -20,9 +20,9 @@ public class JwtUtil {
 
     // Generate a JWT token
     // claims can be used as session to store anything related to the user
-    public static String generateToken(String username, Map<String, Object> claims) {
+    public static String generateToken(String subject, Map<String, Object> claims) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(subject)
                 .addClaims(claims) // Add custom claims here
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key, SignatureAlgorithm.HS256)

@@ -27,8 +27,11 @@ public class LoginServlet extends HttpServlet {
         if (username.equals("anteater") && password.equals("123456")) {
             // Login success:
 
+            // use username as the subject of JWT
+            String subject = username;
+
             // Generate new JWT and add it to Header
-            String token = JwtUtil.generateToken(username, new HashMap<>());
+            String token = JwtUtil.generateToken(subject, new HashMap<>());
             JwtUtil.updateJwtCookie(request, response, token);
 
             responseJsonObject.addProperty("status", "success");

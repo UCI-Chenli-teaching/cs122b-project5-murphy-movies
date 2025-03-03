@@ -17,8 +17,9 @@
 We will use JWT to replace session. A utility class `JwtUtil` is added to help you use JWT. 
 The changes in `LoginServlet` and `LoginFilter` show you how to replace session with JWT.
 - `common/JwtUtil.java`: It contains functions to generate JWT, validate JWT and set JWT into cookies.
-- `login/LoginServlet.java` It shows how to generate JWT. Login username is encrypted to a JWT string. Then the JWT string is set to cookies, so the later requests will always contain the JWT string.
+- `login/LoginServlet.java` It shows how to generate JWT. Login username is encoded to a JWT string. Then the JWT string is set to cookies, so the later requests will always contain the JWT string.
 - `common/LoginFilter.java`: It shows how to get JWT from cookies and how to validate the JWT string. 
+- `star/SingleStarServlet.java`: It shows how to get the states stored in JWT token and update the state. We use an accessCount example similar to `cs122b-project2-session-example`, note the difference between session and JWT.
 
 ### Maven Profiles
 The original Maven configuration will compile everything in the codebase into a war file. Using Maven Profiles, we can compile different part of project into different war files.
