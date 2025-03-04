@@ -32,7 +32,7 @@ We will build a docker image on an AWS instance, push it to Docker Hub, and run 
 - Restart MySQL by running `sudo service mysql restart`.
 - Install Docker on the AWS instance by following the instructions on https://docs.docker.com/engine/install/ubuntu/. Use the instructions under "Install using the apt repository".
 - Register a Docker Hub account.
-- Log into our Docker Hub account by running `sudo docker login` on the AWS instance;
+- Log into our Docker Hub account by running `sudo docker login -u <DockerHub-user-name>` on the AWS instance;
 
 ### Build a Docker image on the AWS instance
 `git clone` this repository on the AWS instance, run `git checkout Docker` to switch to the `Docker` branch
