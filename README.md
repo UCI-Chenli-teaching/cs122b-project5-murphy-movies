@@ -34,16 +34,36 @@ In this branch, we split `/api/login` endpoint to a login profile, and the other
 The `Dockerfile` is also updated. At line 7 we defined an argument `MVN_PROFILE`, you can set its value when building an image.
 
 ## Build different profiles
-- Run `mvn package -P${profileName}` to compile different part of the project into war file.
-- Login endpoint: `mvn package -Plogin`
-- Star endpoints: `mvn package -Pstar`
+- Compile different part of the project into war file with
+  ```
+  mvn package -P${profileName}
+  ``` 
+- Login endpoint: 
+  ```
+  mvn package -Plogin
+  ```
+- Star endpoints:
+  ```
+  mvn package -Pstar
+  ```
 
 If you see errors in Intellij, open the Maven panel at the right. Expand "Profiles" and select only "default". Then reload the Maven Project.
 
 ## Build different Docker images
 
-- Run `sudo docker build . --build-arg MVN_PROFILE=login --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-login:v1` to build the image for login endpoint.
+- Build the image for login endpoint with 
+  ```
+  sudo docker build . --build-arg MVN_PROFILE=login --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-login:v1
+  ```
   - We specify the Maven profile name with `--build-arg MVN_PROFILE=${profileName}`
-- Push the image to DockerHub with `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-login:v1`
-- Repeat the steps for star endpoint: `sudo docker build . --build-arg MVN_PROFILE=star --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-star:v1`
-- `sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-star:v1`
+- Push the image to DockerHub with 
+  ```
+  sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-login:v1
+  ```
+- Repeat the steps for star endpoint:
+  ```
+  sudo docker build . --build-arg MVN_PROFILE=star --platform linux/amd64 -t <DockerHub-user-name>/cs122b-p5-murphy-star:v1
+  ```
+  ```
+  sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-star:v1
+  ```
