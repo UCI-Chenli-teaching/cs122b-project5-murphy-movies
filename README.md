@@ -36,15 +36,15 @@ The `Dockerfile` is also updated. At line 7 we defined an argument `MVN_PROFILE`
 ## Build different profiles
 - Compile different part of the project into war file with
   ```
-  mvn package -P${profileName}
+  mvn package -P ${profileName}
   ``` 
 - Login endpoint: 
   ```
-  mvn package -Plogin
+  mvn package -P login
   ```
 - Star endpoints:
   ```
-  mvn package -Pstar
+  mvn package -P star
   ```
 
 If you see errors in Intellij, open the Maven panel at the right. Expand "Profiles" and select only "default". Then reload the Maven Project.
