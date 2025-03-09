@@ -60,8 +60,8 @@ public class SingleStarServlet extends HttpServlet {
         } else {
             accessCount++;
         }
-
-        System.out.println("SingleStarServlet: user " + claims.getSubject() + " accessCount: " + accessCount);
+        String loginTime = claims.get("loginTime", String.class); // Login time is set in login servlet
+        System.out.println("SingleStarServlet: user " + claims.getSubject() + ", login time: " + loginTime + ", accessCount: " + accessCount);
 
         // Update the accessCount, generate new JWT token and add to cookies
         claims.put("accessCount", accessCount);

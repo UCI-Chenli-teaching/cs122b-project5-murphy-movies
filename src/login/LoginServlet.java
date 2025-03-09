@@ -7,7 +7,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/api/login")
 public class LoginServlet extends HttpServlet {
@@ -30,8 +34,14 @@ public class LoginServlet extends HttpServlet {
             // use username as the subject of JWT
             String subject = username;
 
+            // store user login time in JWT
+            Map<String, Object> claims = new HashMap<>();
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            claims.put("loginTime", dateFormat.format(new Date()));
+
             // Generate new JWT and add it to Header
-            String token = JwtUtil.generateToken(subject, new HashMap<>());
+            String token = JwtUtil.generateToken(subject, claims);
             JwtUtil.updateJwtCookie(request, response, token);
 
             responseJsonObject.addProperty("status", "success");
