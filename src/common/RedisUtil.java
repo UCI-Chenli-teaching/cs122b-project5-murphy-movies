@@ -18,6 +18,9 @@ public class RedisUtil {
             InitialContext ctx = new InitialContext();
             String address = (String) ctx.lookup("java:comp/env/redis/Address");
             String[] parts = address.split(":");
+            if (parts.length != 2) {
+                throw new IllegalArgumentException("Invalid redis/Address format: " + address);
+            }
             String host = parts[0];
             int port = Integer.parseInt(parts[1]);
 

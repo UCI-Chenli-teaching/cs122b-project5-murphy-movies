@@ -19,6 +19,9 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 // Declaring a WebServlet called SingleStarServlet, which maps to url "/api/single-star"
 @WebServlet(name = "SingleStarServlet", urlPatterns = "/api/single-star")
@@ -68,7 +71,12 @@ public class SingleStarServlet extends HttpServlet {
 
         // loginTime: This state is shared between login and star services.
         // Login service stores loginTime in Redis, and star service retrieves the state from LoginFilter.
-        System.out.println("SingleStarServlet: user " + username + ", login time: " + loginTime + ", accessCount: " + accessCount);
+        if (loginTime == null || loginTime.isEmpty()) {
+            loginTime = "unknown";
+        }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String accessTimestamp = dateFormat.format(new Date());
+        System.out.println("LoginTimeStamp: " + loginTime + ", Timestamp: " + accessTimestamp + ", Username: " + username + ", accessCount: " + accessCount);
 
         // Output stream to STDOUT
         PrintWriter out = response.getWriter();
