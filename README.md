@@ -5,7 +5,7 @@
 3. In branch `Kubernetes`, you will see how this application is modified to be deployed using Kubernetes pods
 4. In branch `Multi-Service`, you will see how this application is modified to a multi-service architecture.
 
-### This README.md file is used for the Multi-Service branch
+### This README.md file is used for the main branch
 ### Before running the example
 
 #### We need to create a user that is allowed to login from anywhere
