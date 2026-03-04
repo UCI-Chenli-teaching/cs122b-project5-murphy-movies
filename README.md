@@ -81,3 +81,12 @@ If you see errors in Intellij, open the Maven panel at the right. Expand "Profil
   sudo docker push <DockerHub-user-name>/cs122b-p5-murphy-star:v1
   ```
 
+### Clean up
+- list all images 
+```
+sudo docker images
+``` 
+- delete image
+```
+sudo docker rmi <image ID>
+```
