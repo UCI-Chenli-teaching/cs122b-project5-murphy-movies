@@ -39,6 +39,7 @@ We will build a docker image on an AWS instance, push it to Docker Hub, and run 
   ```
   sudo docker login -u <DockerHub-user-name>
   ```
+  When prompted for password, enter your Read/Write Docker Hub access token (recommended) instead of your account password.
 
 ### Build a Docker image on the AWS instance
 `git clone` this repository on the AWS instance, switch to `Docker` branch by running
