@@ -9,8 +9,8 @@
 
 ## Brief Explanation
 
-- The `Docker` branch extends the `main` branch to enable this application to run in Docker containers.
-- There are two main changes compared to the `main` branch: a new `Dockerfile` in the root folder and a modified `context.xml`.
+- The `Docker` branch extends the `master` branch to enable this application to run in Docker containers.
+- There are two main changes compared to the `master` branch: a new `Dockerfile` in the root folder and a modified `context.xml`.
 
 ### Dockerfile
 - This file provides instructions to the Docker engine on how to package the application into a docker image;
@@ -27,7 +27,7 @@
 We will build a docker image on an AWS instance, push it to Docker Hub, and run a Docker container on the AWS instance to serve the website.
 
 ### Setup an AWS instance
-- Follow the instructions from the README file in the `main` branch to set up the `murphymovies` database on an AWS instance;
+- Follow the instructions from the README file in the `master` branch to set up the `murphymovies` database on an AWS instance;
 - On the AWS instance, edit the `/etc/mysql/mysql.conf.d/mysqld.cnf` file and set `bind-address` to `0.0.0.0`.
 - Restart MySQL by running 
   ```
